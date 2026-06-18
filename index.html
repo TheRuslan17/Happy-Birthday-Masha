@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Маша, с днём рождения! 🎉</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Inter:wght@300;400;700&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,39 +41,50 @@
             transform: scale(1.05);
             pointer-events: none;
         }
-
+        .start-screen .emoji-big {
+            font-size: 72px;
+            margin-bottom: 16px;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
         .start-screen h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(36px, 10vw, 72px);
-            background: linear-gradient(90deg, #b07c6a, #d4b8ab, #b07c6a);
+            font-size: clamp(40px, 12vw, 80px);
+            font-weight: 700;
+            font-style: italic;
+            background: linear-gradient(135deg, #b07c6a, #d4b8ab, #b07c6a);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
         }
         .start-screen .sub {
+            font-family: 'Inter', sans-serif;
             font-size: 18px;
+            font-weight: 300;
             color: #9a847a;
             margin-bottom: 30px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             max-width: 500px;
-            line-height: 1.7;
-        }
-        .start-screen .emoji-big {
-            font-size: 60px;
-            margin-bottom: 20px;
+            line-height: 1.8;
         }
         .start-btn {
-            background: linear-gradient(90deg, #b07c6a, #c9a89b);
+            background: linear-gradient(135deg, #b07c6a, #c9a89b);
             border: none;
-            padding: 18px 48px;
+            padding: 18px 52px;
             border-radius: 60px;
-            font-size: 20px;
-            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
             color: #fff;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 8px 40px rgba(176, 124, 106, 0.3);
+            letter-spacing: 1px;
             animation: pulseBtn 2s infinite ease-in-out;
         }
         .start-btn:hover { transform: scale(1.06); }
@@ -83,9 +96,11 @@
             font-size: 14px;
             color: #b09a8f;
             margin-top: 20px;
+            font-weight: 300;
+            letter-spacing: 1px;
         }
 
-        /* ===== ОСНОВНОЙ САЙТ С ФОНОМ ===== */
+        /* ОСНОВНОЙ САЙТ */
         .main-site {
             opacity: 0;
             transition: opacity 1s ease;
@@ -98,7 +113,6 @@
         }
         .main-site.show { opacity: 1; }
 
-        /* ФОН НА ВТОРОЙ СТРАНИЦЕ */
         .main-site::before {
             content: '';
             position: fixed;
@@ -111,7 +125,7 @@
             background-position: center;
             background-attachment: fixed;
             z-index: -2;
-            opacity: 0.6;
+            opacity: 0.5;
         }
         .main-site::after {
             content: '';
@@ -120,111 +134,87 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(250, 247, 242, 0.85);
+            background: rgba(250, 247, 242, 0.88);
             z-index: -1;
-        }
-
-        /* ===== ПАДАЮЩИЕ СТРАЗЫ ===== */
-        .confetti-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-        .confetti {
-            position: absolute;
-            top: -30px;
-            animation: confettiFall linear infinite;
-            opacity: 0.95;
-            border-radius: 2px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-        }
-        @keyframes confettiFall {
-            0% {
-                transform: translateY(0) rotate(0deg) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(110vh) rotate(720deg) scale(0.6);
-                opacity: 0.1;
-            }
         }
 
         /* ШАПКА */
         .hero {
             text-align: center;
-            padding: 20px 0 10px;
+            padding: 30px 0 10px;
             position: relative;
             z-index: 1;
         }
         .hero .big {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(40px, 10vw, 72px);
-            font-weight: 600;
+            font-size: clamp(44px, 12vw, 80px);
+            font-weight: 700;
             font-style: italic;
-            background: linear-gradient(90deg, #b07c6a, #d4b8ab, #b07c6a);
+            background: linear-gradient(135deg, #b07c6a, #d4b8ab, #b07c6a);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: glow 2s ease-in-out infinite alternate;
+            animation: glow 2.5s ease-in-out infinite alternate;
             line-height: 1.2;
+            letter-spacing: 1px;
         }
         @keyframes glow {
-            0% { filter: drop-shadow(0 0 20px rgba(176, 124, 106, 0.2)); }
-            100% { filter: drop-shadow(0 0 40px rgba(176, 124, 106, 0.4)); }
+            0% { filter: drop-shadow(0 0 20px rgba(176, 124, 106, 0.15)); }
+            100% { filter: drop-shadow(0 0 50px rgba(176, 124, 106, 0.35)); }
         }
         .hero .big-sub {
-            font-size: clamp(16px, 3vw, 22px);
-            color: #9a847a;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(18px, 3vw, 26px);
+            font-weight: 400;
             font-style: italic;
-            font-weight: 300;
-            margin-top: 6px;
-            letter-spacing: 1px;
+            color: #9a847a;
+            margin-top: 8px;
+            letter-spacing: 2px;
         }
 
         /* ФИЛОСОФСКОЕ ПОЖЕЛАНИЕ */
         .philosophy {
             text-align: center;
             max-width: 700px;
-            margin: 20px auto 30px;
-            padding: 24px 20px;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(6px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            line-height: 1.9;
+            margin: 20px auto 35px;
+            padding: 32px 28px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 40px rgba(176, 124, 106, 0.08);
+            line-height: 2;
             font-size: 18px;
             color: #3d2e2a;
             font-weight: 300;
+            font-family: 'Inter', sans-serif;
         }
         .philosophy .highlight-ph {
             color: #b07c6a;
-            font-weight: 400;
+            font-weight: 500;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
         }
 
-        /* КАРУСЕЛЬ — УВЕЛИЧЕННАЯ ВЫСОТА */
+        /* КАРУСЕЛЬ */
         .carousel-container {
             position: relative;
             max-width: 700px;
             margin: 30px auto;
-            border-radius: 24px;
+            border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 12px 60px rgba(176, 124, 106, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(4px);
+            box-shadow: 0 16px 80px rgba(176, 124, 106, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
         }
         .carousel-slide {
             display: flex;
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .carousel-slide img {
             width: 100%;
-            height: 600px; /* БЫЛО 400px — УВЕЛИЧИЛ В 1.5 РАЗА */
+            height: 600px;
             object-fit: cover;
             flex-shrink: 0;
         }
@@ -234,49 +224,54 @@
             top: 50%;
             transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             color: #3d2e2a;
-            font-size: 32px;
-            padding: 12px 20px;
+            font-size: 28px;
+            padding: 12px 18px;
             border-radius: 50%;
             cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease;
+            transition: all 0.3s ease;
             z-index: 10;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
         .carousel-btn:hover {
             background: #b07c6a;
             color: #fff;
             transform: translateY(-50%) scale(1.1);
         }
-        .carousel-btn.prev { left: 12px; }
-        .carousel-btn.next { right: 12px; }
+        .carousel-btn.prev { left: 16px; }
+        .carousel-btn.next { right: 16px; }
 
         .carousel-dots {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            padding: 16px 0 0;
+            gap: 12px;
+            padding: 20px 0 0;
         }
         .carousel-dots span {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: rgba(237, 229, 221, 0.6);
+            background: rgba(176, 124, 106, 0.25);
             cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(176, 124, 106, 0.1);
         }
         .carousel-dots span.active {
             background: #b07c6a;
-            transform: scale(1.3);
+            transform: scale(1.4);
+            border-color: #b07c6a;
         }
 
         .praise {
             text-align: center;
-            font-size: 20px;
-            font-weight: 300;
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 400;
+            font-style: italic;
             color: #3d2e2a;
-            padding: 16px 0 8px;
+            padding: 20px 0 8px;
             min-height: 80px;
             display: flex;
             align-items: center;
@@ -284,44 +279,46 @@
             flex-wrap: wrap;
             gap: 6px;
             transition: opacity 0.4s ease;
-            font-style: italic;
         }
         .praise .highlight {
             color: #b07c6a;
-            font-weight: 700;
+            font-weight: 600;
             font-style: normal;
         }
 
         /* СЕКРЕТ */
         .secret-section {
             text-align: center;
-            margin: 30px 0;
+            margin: 35px 0;
         }
         .secret-btn {
-            background: linear-gradient(90deg, #b07c6a, #c9a89b);
+            background: linear-gradient(135deg, #b07c6a, #c9a89b);
             border: none;
-            padding: 14px 36px;
+            padding: 16px 44px;
             border-radius: 60px;
+            font-family: 'Inter', sans-serif;
             font-size: 17px;
-            font-weight: 700;
+            font-weight: 600;
             color: #fff;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 8px 30px rgba(176, 124, 106, 0.2);
+            letter-spacing: 1px;
         }
         .secret-btn:hover { transform: scale(1.06); }
         .secret-message {
             display: none;
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(8px);
-            border-radius: 20px;
-            padding: 30px 24px;
-            margin-top: 16px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 36px 28px;
+            margin-top: 20px;
             border: 1px solid rgba(255, 255, 255, 0.4);
             animation: fadeUp 0.6s ease;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            box-shadow: 0 8px 40px rgba(176, 124, 106, 0.06);
         }
         .secret-message.show { display: block; }
         @keyframes fadeUp {
@@ -329,42 +326,46 @@
             100% { opacity: 1; transform: translateY(0); }
         }
         .secret-message p {
-            font-size: 18px;
+            font-family: 'Playfair Display', serif;
+            font-size: 19px;
             color: #3d2e2a;
-            line-height: 1.9;
+            line-height: 2;
+            font-weight: 400;
         }
         .secret-message p .highlight-secret {
             color: #b07c6a;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .hashtag {
             text-align: center;
+            font-family: 'Inter', sans-serif;
             font-size: 14px;
+            font-weight: 300;
             color: #b09a8f;
             margin-top: 30px;
-            letter-spacing: 2px;
+            letter-spacing: 4px;
         }
 
         @media (max-width: 600px) {
-            .carousel-slide img { height: 380px; } /* На телефонах тоже увеличил */
+            .carousel-slide img { height: 380px; }
             .main-site { padding: 20px 12px; }
-            .praise { font-size: 17px; min-height: 60px; padding: 12px 0 4px; }
-            .hero .big { font-size: 32px; }
-            .hero .big-sub { font-size: 14px; }
-            .secret-btn { padding: 12px 24px; font-size: 15px; }
-            .start-screen h1 { font-size: 32px; }
-            .start-btn { padding: 14px 32px; font-size: 17px; }
+            .praise { font-size: 18px; min-height: 60px; padding: 12px 0 4px; }
+            .hero .big { font-size: 36px; }
+            .hero .big-sub { font-size: 16px; }
+            .secret-btn { padding: 14px 28px; font-size: 15px; }
+            .start-screen h1 { font-size: 36px; }
+            .start-btn { padding: 16px 36px; font-size: 16px; }
             .start-screen .sub { font-size: 16px; }
-            .secret-message p { font-size: 16px; }
-            .philosophy { font-size: 16px; padding: 20px 16px; }
-            .main-site::before {
-                background-attachment: scroll;
-            }
+            .secret-message p { font-size: 17px; }
+            .philosophy { font-size: 16px; padding: 24px 18px; }
+            .main-site::before { background-attachment: scroll; }
             .carousel-btn {
-                font-size: 24px;
-                padding: 8px 14px;
+                font-size: 22px;
+                padding: 10px 14px;
             }
+            .carousel-btn.prev { left: 10px; }
+            .carousel-btn.next { right: 10px; }
         }
     </style>
 </head>
@@ -382,10 +383,7 @@
         <div class="hint">Нажми на кнопку, и мы начнём!</div>
     </div>
 
-    <!-- ===== ПАДАЮЩИЕ СТРАЗЫ ===== -->
-    <div class="confetti-container" id="confettiContainer"></div>
-
-    <!-- ОСНОВНОЙ САЙТ С ФОНОМ -->
+    <!-- ОСНОВНОЙ САЙТ -->
     <div class="main-site" id="mainSite">
 
         <section class="hero">
@@ -401,7 +399,7 @@
             А всё остальное приложится.
         </div>
 
-        <!-- КАРУСЕЛЬ С 7 ФОТО (ВЫСОТА УВЕЛИЧЕНА) -->
+        <!-- КАРУСЕЛЬ -->
         <div class="carousel-container">
             <div class="carousel-slide" id="carouselSlide">
                 <img src="1.jpg" alt="Маша 1" />
@@ -475,54 +473,6 @@
             }
         });
 
-        // ===== ПАДАЮЩИЕ СТРАЗЫ (70 штук, яркие) =====
-        function createConfetti() {
-            const container = document.getElementById('confettiContainer');
-            const colors = [
-                '#b07c6a', '#c9a89b', '#d4b8ab', '#ede5dd',
-                '#faf7f2', '#e8ddd5', '#dccfc7',
-                '#ffd700', '#f0e8e0', '#c4a882',
-                '#e6d5c0', '#dcc8b8', '#b89a8a'
-            ];
-            const shapes = ['circle', 'square', 'diamond'];
-
-            for (let i = 0; i < 70; i++) {
-                const el = document.createElement('div');
-                el.classList.add('confetti');
-
-                const size = Math.random() * 12 + 4;
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                const left = Math.random() * 100;
-                const duration = Math.random() * 5 + 3;
-                const delay = Math.random() * 10;
-                const shape = shapes[Math.floor(Math.random() * shapes.length)];
-
-                el.style.width = size + 'px';
-                el.style.height = (shape === 'diamond' ? size * 0.7 : size) + 'px';
-                el.style.left = left + '%';
-                el.style.animationDuration = duration + 's';
-                el.style.animationDelay = delay + 's';
-                el.style.background = color;
-
-                if (shape === 'circle') {
-                    el.style.borderRadius = '50%';
-                } else if (shape === 'diamond') {
-                    el.style.transform = 'rotate(45deg)';
-                    el.style.borderRadius = '2px';
-                } else {
-                    el.style.borderRadius = '2px';
-                }
-
-                // БЛЕСК
-                if (Math.random() > 0.4) {
-                    el.style.boxShadow = `0 0 12px ${color}, 0 0 24px rgba(255,255,255,0.2)`;
-                }
-
-                container.appendChild(el);
-            }
-        }
-        createConfetti();
-
         // ===== КАРУСЕЛЬ =====
         const slide = document.getElementById('carouselSlide');
         const images = slide.querySelectorAll('img');
@@ -588,11 +538,11 @@
                 overlay.style.cssText = `
                     position: fixed; top:0; left:0; width:100%; height:100%;
                     background: rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center;
-                    z-index:1000; cursor:pointer; backdrop-filter:blur(8px);
+                    z-index:1000; cursor:pointer; backdrop-filter:blur(12px);
                 `;
                 const big = document.createElement('img');
                 big.src = this.src;
-                big.style.cssText = `max-width:90%; max-height:90%; border-radius:24px; box-shadow:0 0 60px rgba(176,124,106,0.3); animation:fadeUp 0.4s ease;`;
+                big.style.cssText = `max-width:92%; max-height:92%; border-radius:28px; box-shadow:0 0 80px rgba(176,124,106,0.3); animation:fadeUp 0.4s ease;`;
                 overlay.appendChild(big);
                 document.body.appendChild(overlay);
                 overlay.addEventListener('click', () => overlay.remove());
