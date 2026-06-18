@@ -11,8 +11,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
-            background: #0f0720;
-            color: #fff;
+            background: #faf7f2;
+            color: #3d2e2a;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -24,7 +24,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #1a0b2e, #2d1b4e, #1a0b2e);
+            background: #faf7f2;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -43,7 +43,7 @@
         .start-screen h1 {
             font-family: 'Playfair Display', serif;
             font-size: clamp(36px, 10vw, 72px);
-            background: linear-gradient(90deg, #f9a8d4, #f472b6, #ec4899);
+            background: linear-gradient(90deg, #b07c6a, #d4b8ab, #b07c6a);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -51,7 +51,7 @@
         }
         .start-screen .sub {
             font-size: 18px;
-            color: #c4b5d4;
+            color: #9a847a;
             margin-bottom: 30px;
             letter-spacing: 1px;
             max-width: 500px;
@@ -62,7 +62,7 @@
             margin-bottom: 20px;
         }
         .start-btn {
-            background: linear-gradient(90deg, #f472b6, #ec4899);
+            background: linear-gradient(90deg, #b07c6a, #c9a89b);
             border: none;
             padding: 18px 48px;
             border-radius: 60px;
@@ -71,7 +71,7 @@
             color: #fff;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 8px 40px rgba(244, 114, 182, 0.4);
+            box-shadow: 0 8px 40px rgba(176, 124, 106, 0.3);
             animation: pulseBtn 2s infinite ease-in-out;
         }
         .start-btn:hover { transform: scale(1.06); }
@@ -81,7 +81,7 @@
         }
         .start-screen .hint {
             font-size: 14px;
-            color: #6b5b7a;
+            color: #b09a8f;
             margin-top: 20px;
         }
 
@@ -120,7 +120,7 @@
             }
             100% {
                 transform: translateY(110vh) rotate(720deg) scale(1.2);
-                opacity: 0.2;
+                opacity: 0.1;
             }
         }
 
@@ -136,24 +136,24 @@
             font-size: clamp(40px, 10vw, 72px);
             font-weight: 600;
             font-style: italic;
-            background: linear-gradient(90deg, #f9a8d4, #f472b6, #ec4899);
+            background: linear-gradient(90deg, #b07c6a, #d4b8ab, #b07c6a);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: glow 2s ease-in-out infinite alternate;
             line-height: 1.2;
         }
+        @keyframes glow {
+            0% { filter: drop-shadow(0 0 20px rgba(176, 124, 106, 0.2)); }
+            100% { filter: drop-shadow(0 0 40px rgba(176, 124, 106, 0.4)); }
+        }
         .hero .big-sub {
             font-size: clamp(16px, 3vw, 22px);
-            color: #c4b5d4;
+            color: #9a847a;
             font-style: italic;
             font-weight: 300;
             margin-top: 6px;
             letter-spacing: 1px;
-        }
-        @keyframes glow {
-            0% { filter: drop-shadow(0 0 20px rgba(244, 114, 182, 0.3)); }
-            100% { filter: drop-shadow(0 0 50px rgba(244, 114, 182, 0.7)); }
         }
 
         /* ФИЛОСОФСКОЕ ПОЖЕЛАНИЕ */
@@ -162,16 +162,17 @@
             max-width: 700px;
             margin: 20px auto 30px;
             padding: 24px 20px;
-            background: rgba(255,255,255,0.04);
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
             border-radius: 20px;
-            border: 1px solid rgba(244, 114, 182, 0.08);
+            border: 1px solid #ede5dd;
             line-height: 1.9;
             font-size: 18px;
-            color: #e5d9f0;
+            color: #3d2e2a;
             font-weight: 300;
         }
         .philosophy .highlight-ph {
-            color: #f472b6;
+            color: #b07c6a;
             font-weight: 400;
         }
 
@@ -182,9 +183,9 @@
             margin: 30px auto;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 12px 60px rgba(0,0,0,0.5);
-            border: 2px solid rgba(244, 114, 182, 0.2);
-            background: #1a0b2e;
+            box-shadow: 0 12px 60px rgba(176, 124, 106, 0.15);
+            border: 2px solid #ede5dd;
+            background: #fff;
         }
         .carousel-slide {
             display: flex;
@@ -201,11 +202,11 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(8px);
-            border: none;
-            color: #fff;
-            font-size: 32px;
+            border: 1px solid #ede5dd;
+            color: #3d2e2a;
+            font-size: 28px;
             padding: 8px 16px;
             border-radius: 50%;
             cursor: pointer;
@@ -213,7 +214,8 @@
             z-index: 10;
         }
         .carousel-btn:hover {
-            background: rgba(244, 114, 182, 0.6);
+            background: #b07c6a;
+            color: #fff;
             transform: translateY(-50%) scale(1.1);
         }
         .carousel-btn.prev { left: 12px; }
@@ -229,12 +231,12 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: #3d2a5a;
+            background: #ede5dd;
             cursor: pointer;
             transition: background 0.3s ease, transform 0.3s ease;
         }
         .carousel-dots span.active {
-            background: #f472b6;
+            background: #b07c6a;
             transform: scale(1.3);
         }
 
@@ -242,7 +244,7 @@
             text-align: center;
             font-size: 20px;
             font-weight: 300;
-            color: #e5d9f0;
+            color: #3d2e2a;
             padding: 16px 0 8px;
             min-height: 80px;
             display: flex;
@@ -254,7 +256,7 @@
             font-style: italic;
         }
         .praise .highlight {
-            color: #f472b6;
+            color: #b07c6a;
             font-weight: 700;
             font-style: normal;
         }
@@ -265,7 +267,7 @@
             margin: 30px 0;
         }
         .secret-btn {
-            background: linear-gradient(90deg, #f472b6, #ec4899);
+            background: linear-gradient(90deg, #b07c6a, #c9a89b);
             border: none;
             padding: 14px 36px;
             border-radius: 60px;
@@ -274,17 +276,17 @@
             color: #fff;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 8px 30px rgba(244, 114, 182, 0.3);
+            box-shadow: 0 8px 30px rgba(176, 124, 106, 0.2);
         }
         .secret-btn:hover { transform: scale(1.06); }
         .secret-message {
             display: none;
-            background: rgba(255,255,255,0.06);
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
             border-radius: 20px;
             padding: 30px 24px;
             margin-top: 16px;
-            border: 1px solid rgba(244, 114, 182, 0.2);
+            border: 1px solid #ede5dd;
             animation: fadeUp 0.6s ease;
             max-width: 600px;
             margin-left: auto;
@@ -297,14 +299,18 @@
         }
         .secret-message p {
             font-size: 18px;
-            color: #f9d4e8;
+            color: #3d2e2a;
             line-height: 1.9;
+        }
+        .secret-message p .highlight-secret {
+            color: #b07c6a;
+            font-weight: 700;
         }
 
         .hashtag {
             text-align: center;
             font-size: 14px;
-            color: #6b5b7a;
+            color: #b09a8f;
             margin-top: 30px;
             letter-spacing: 2px;
         }
@@ -382,11 +388,11 @@
             <div class="secret-message" id="secretMessage">
                 <p>
                     💫 Знаешь, что я понял?<br/><br/>
-                    В этом мире есть люди, ради которых хочется делать что-то <span style="color:#f472b6;">настоящее</span>.<br/>
+                    В этом мире есть люди, ради которых хочется делать что-то <span class="highlight-secret">настоящее</span>.<br/>
                     Ты — одна из них.<br/><br/>
                     Я не просто так сделал этот сайт.<br/>
                     Я хотел, чтобы ты знала:<br/>
-                    <span style="color:#f472b6;font-weight:700;">ты крутая.</span><br/>
+                    <span class="highlight-secret">ты крутая.</span><br/>
                     И это не лесть, а факт.<br/><br/>
                     Оставайся собой.<br/>
                     А если станет грустно — вспомни, что ты уже сделала этот мир чуточку лучше.<br/><br/>
@@ -434,13 +440,13 @@
         function createConfetti() {
             const container = document.getElementById('confettiContainer');
             const colors = [
-                '#f472b6', '#ec4899', '#f9a8d4', '#fde68a',
-                '#6ee7b7', '#60a5fa', '#c084fc', '#fca5a5',
-                '#ffd700', '#ff6b6b', '#a29bfe', '#fd79a8'
+                '#b07c6a', '#c9a89b', '#d4b8ab', '#ede5dd',
+                '#faf7f2', '#e8ddd5', '#dccfc7', '#c9a89b',
+                '#b07c6a', '#d4b8ab', '#f0e8e0'
             ];
             const shapes = ['circle', 'square', 'diamond'];
 
-            for (let i = 0; i < 80; i++) {
+            for (let i = 0; i < 60; i++) {
                 const el = document.createElement('div');
                 el.classList.add('confetti');
 
@@ -539,12 +545,12 @@
                 const overlay = document.createElement('div');
                 overlay.style.cssText = `
                     position: fixed; top:0; left:0; width:100%; height:100%;
-                    background: rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center;
+                    background: rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center;
                     z-index:1000; cursor:pointer; backdrop-filter:blur(8px);
                 `;
                 const big = document.createElement('img');
                 big.src = this.src;
-                big.style.cssText = `max-width:90%; max-height:90%; border-radius:24px; box-shadow:0 0 60px rgba(244,114,182,0.4); animation:fadeUp 0.4s ease;`;
+                big.style.cssText = `max-width:90%; max-height:90%; border-radius:24px; box-shadow:0 0 60px rgba(176,124,106,0.3); animation:fadeUp 0.4s ease;`;
                 overlay.appendChild(big);
                 document.body.appendChild(overlay);
                 overlay.addEventListener('click', () => overlay.remove());
