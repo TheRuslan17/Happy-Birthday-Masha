@@ -3,7 +3,22 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Маша, с днём рождения! 🎉</title>
+
+    <!-- ===== OPEN GRAPH ДЛЯ ПРЕВЬЮ В МЕССЕНДЖЕРАХ ===== -->
+    <title>🎉 Маша, с днём рождения!</title>
+    <meta property="og:title" content="🎉 Маша, с днём рождения! Сюрприз ждёт тебя!" />
+    <meta property="og:description" content="Загадка, музыка, твои фотки, торт со свечами и секретное сообщение. Открой и угадай ответ! ❤️" />
+    <meta property="og:image" content="https://theruslan17.github.io/wedding-invite/fon_szadi.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://theruslan17.github.io/wedding-invite/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Для Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="🎉 Маша, с днём рождения! Сюрприз ждёт тебя!" />
+    <meta name="twitter:description" content="Загадка, музыка, твои фотки, торт со свечами и секретное сообщение. Открой и угадай ответ! ❤️" />
+    <meta name="twitter:image" content="https://theruslan17.github.io/wedding-invite/fon_szadi.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -380,7 +395,6 @@
             margin-bottom: 16px;
         }
 
-        /* ТОРТ */
         .cake {
             font-size: 80px;
             line-height: 1.2;
@@ -418,7 +432,6 @@
             display: block;
         }
 
-        /* ЗВЁЗДОЧКИ ПОСЛЕ ЗАДУВАНИЯ */
         .stars-burst {
             position: absolute;
             top: 50%;
@@ -479,7 +492,6 @@
             opacity: 1;
         }
 
-        /* СЕКРЕТ */
         .secret-section {
             text-align: center;
             margin: 35px 0;
@@ -569,10 +581,8 @@
 </head>
 <body>
 
-    <!-- ===== ЛЕТАЮЩИЕ СЕРДЕЧКИ ===== -->
     <div class="hearts-container" id="heartsContainer"></div>
 
-    <!-- ===== СТАРТОВЫЙ ЭКРАН ===== -->
     <div class="start-screen" id="startScreen">
         <div class="emoji-big">🤔</div>
         <h1>Проверь свою интуицию!</h1>
@@ -587,7 +597,6 @@
         </div>
     </div>
 
-    <!-- ===== ОСНОВНОЙ САЙТ ===== -->
     <div class="main-site" id="mainSite">
 
         <section class="hero">
@@ -603,7 +612,6 @@
             А всё остальное приложится.
         </div>
 
-        <!-- КАРУСЕЛЬ -->
         <div class="carousel-container">
             <div class="carousel-slide" id="carouselSlide">
                 <img src="1.jpg" alt="Маша 1" />
@@ -624,7 +632,6 @@
             <span>Ты — </span><span class="highlight">та, кто делает мир интереснее</span><span> 🌟</span>
         </div>
 
-        <!-- ===== ТОРТ СО СВЕЧАМИ ===== -->
         <section class="cake-section" id="cakeSection">
             <div class="cake-title">🎂 Задуй свечи и загадай желание!</div>
 
@@ -643,7 +650,6 @@
             <div class="cake-message" id="cakeMessage">🎉 Ура! С днём рождения! 🎉</div>
         </section>
 
-        <!-- СЕКРЕТ -->
         <section class="secret-section">
             <button class="secret-btn" id="secretBtn">💌 Нажми, чтобы узнать секрет</button>
             <div class="secret-message" id="secretMessage">
@@ -667,7 +673,6 @@
         <div class="hashtag">#Маша14 #СДнёмРождения #ТыСупер</div>
     </div>
 
-    <!-- АУДИО -->
     <audio id="bgMusic" loop preload="auto">
         <source src="song.mp3" type="audio/mpeg">
     </audio>
@@ -807,7 +812,7 @@
         }
         resetAutoPlay();
 
-        // ===== ТОРТ СО СВЕЧАМИ =====
+        // ===== ТОРТ =====
         const cakeBtn = document.getElementById('cakeBtn');
         const flames = document.getElementById('flames');
         const cakeMessage = document.getElementById('cakeMessage');
@@ -816,16 +821,13 @@
         cakeBtn.addEventListener('click', function() {
             if (isBlown) return;
 
-            // Гасим свечи
             flames.classList.add('hidden');
             this.disabled = true;
             this.textContent = '🎉 Ура!';
 
-            // Показываем сообщение
             setTimeout(() => {
                 cakeMessage.classList.add('show');
 
-                // Создаём звёздочки
                 const stars = document.createElement('div');
                 stars.className = 'stars-burst show';
                 stars.style.position = 'absolute';
