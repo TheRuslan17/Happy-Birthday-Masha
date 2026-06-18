@@ -8,12 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Inter:wght@300;400;700&display=swap" rel="stylesheet"/>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             background: #0f0720;
@@ -22,7 +17,7 @@
             overflow-x: hidden;
         }
 
-        /* === СТАРТОВЫЙ ЭКРАН === */
+        /* СТАРТОВЫЙ ЭКРАН */
         .start-screen {
             position: fixed;
             top: 0;
@@ -66,7 +61,6 @@
             font-size: 60px;
             margin-bottom: 20px;
         }
-
         .start-btn {
             background: linear-gradient(90deg, #f472b6, #ec4899);
             border: none;
@@ -80,21 +74,18 @@
             box-shadow: 0 8px 40px rgba(244, 114, 182, 0.4);
             animation: pulseBtn 2s infinite ease-in-out;
         }
-        .start-btn:hover {
-            transform: scale(1.06);
-        }
+        .start-btn:hover { transform: scale(1.06); }
         @keyframes pulseBtn {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.04); }
         }
-
         .start-screen .hint {
             font-size: 14px;
             color: #6b5b7a;
             margin-top: 20px;
         }
 
-        /* === ОСНОВНОЙ САЙТ === */
+        /* ОСНОВНОЙ САЙТ */
         .main-site {
             opacity: 0;
             transition: opacity 1s ease;
@@ -102,11 +93,9 @@
             max-width: 900px;
             margin: 0 auto;
         }
-        .main-site.show {
-            opacity: 1;
-        }
+        .main-site.show { opacity: 1; }
 
-        /* КОНФЕТТИ */
+        /* КОНФЕТТИ — СТРАЗЫ */
         .confetti-container {
             position: fixed;
             top: 0;
@@ -119,14 +108,20 @@
         }
         .confetti {
             position: absolute;
-            width: 10px;
-            height: 10px;
-            top: -10px;
+            top: -20px;
             animation: confettiFall linear infinite;
+            opacity: 0.9;
+            border-radius: 2px;
         }
         @keyframes confettiFall {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.8);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg) scale(1.2);
+                opacity: 0.2;
+            }
         }
 
         /* ШАПКА */
@@ -160,17 +155,24 @@
             0% { filter: drop-shadow(0 0 20px rgba(244, 114, 182, 0.3)); }
             100% { filter: drop-shadow(0 0 50px rgba(244, 114, 182, 0.7)); }
         }
-        .hero .sub {
-            font-size: 16px;
-            color: #c4b5d4;
-            letter-spacing: 4px;
-            margin-top: 4px;
+
+        /* ФИЛОСОФСКОЕ ПОЖЕЛАНИЕ */
+        .philosophy {
+            text-align: center;
+            max-width: 700px;
+            margin: 20px auto 30px;
+            padding: 24px 20px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 20px;
+            border: 1px solid rgba(244, 114, 182, 0.08);
+            line-height: 1.9;
+            font-size: 18px;
+            color: #e5d9f0;
+            font-weight: 300;
         }
-        .hero .age {
-            font-size: 24px;
-            font-weight: 700;
+        .philosophy .highlight-ph {
             color: #f472b6;
-            margin-top: 2px;
+            font-weight: 400;
         }
 
         /* КАРУСЕЛЬ */
@@ -214,12 +216,8 @@
             background: rgba(244, 114, 182, 0.6);
             transform: translateY(-50%) scale(1.1);
         }
-        .carousel-btn.prev {
-            left: 12px;
-        }
-        .carousel-btn.next {
-            right: 12px;
-        }
+        .carousel-btn.prev { left: 12px; }
+        .carousel-btn.next { right: 12px; }
 
         .carousel-dots {
             display: flex;
@@ -261,7 +259,7 @@
             font-style: normal;
         }
 
-        /* СЕКРЕТНОЕ СООБЩЕНИЕ */
+        /* СЕКРЕТ */
         .secret-section {
             text-align: center;
             margin: 30px 0;
@@ -278,9 +276,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 8px 30px rgba(244, 114, 182, 0.3);
         }
-        .secret-btn:hover {
-            transform: scale(1.06);
-        }
+        .secret-btn:hover { transform: scale(1.06); }
         .secret-message {
             display: none;
             background: rgba(255,255,255,0.06);
@@ -294,9 +290,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        .secret-message.show {
-            display: block;
-        }
+        .secret-message.show { display: block; }
         @keyframes fadeUp {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -304,7 +298,7 @@
         .secret-message p {
             font-size: 18px;
             color: #f9d4e8;
-            line-height: 1.8;
+            line-height: 1.9;
         }
 
         .hashtag {
@@ -316,70 +310,52 @@
         }
 
         @media (max-width: 600px) {
-            .carousel-slide img {
-                height: 280px;
-            }
-            .main-site {
-                padding: 20px 12px;
-            }
-            .praise {
-                font-size: 17px;
-                min-height: 60px;
-                padding: 12px 0 4px;
-            }
-            .hero .big {
-                font-size: 32px;
-            }
-            .hero .big-sub {
-                font-size: 14px;
-            }
-            .secret-btn {
-                padding: 12px 24px;
-                font-size: 15px;
-            }
-            .start-screen h1 {
-                font-size: 32px;
-            }
-            .start-btn {
-                padding: 14px 32px;
-                font-size: 17px;
-            }
-            .start-screen .sub {
-                font-size: 16px;
-            }
-            .secret-message p {
-                font-size: 16px;
-            }
+            .carousel-slide img { height: 280px; }
+            .main-site { padding: 20px 12px; }
+            .praise { font-size: 17px; min-height: 60px; padding: 12px 0 4px; }
+            .hero .big { font-size: 32px; }
+            .hero .big-sub { font-size: 14px; }
+            .secret-btn { padding: 12px 24px; font-size: 15px; }
+            .start-screen h1 { font-size: 32px; }
+            .start-btn { padding: 14px 32px; font-size: 17px; }
+            .start-screen .sub { font-size: 16px; }
+            .secret-message p { font-size: 16px; }
+            .philosophy { font-size: 16px; padding: 20px 16px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== СТАРТОВЫЙ ЭКРАН ===== -->
+    <!-- СТАРТОВЫЙ ЭКРАН -->
     <div class="start-screen" id="startScreen">
         <div class="emoji-big">🎂</div>
         <h1>Привет, Маша!</h1>
         <div class="sub">
-            ✨ Ты стоишь на пороге чего-то удивительного.<br/>
-            Включи музыку и позволь этому мгновению случиться ✨
+            ✨ Сегодня тот день, когда время замирает.<br/>
+            Включи музыку и просто дай этому моменту случиться ✨
         </div>
         <button class="start-btn" id="startBtn">🎵 Включить музыку и начать</button>
         <div class="hint">Нажми на кнопку, и мы начнём!</div>
     </div>
 
-    <!-- ===== КОНФЕТТИ ===== -->
+    <!-- КОНФЕТТИ -->
     <div class="confetti-container" id="confettiContainer"></div>
 
-    <!-- ===== ОСНОВНОЙ САЙТ ===== -->
+    <!-- ОСНОВНОЙ САЙТ -->
     <div class="main-site" id="mainSite">
 
-        <!-- ШАПКА -->
         <section class="hero">
             <div class="big">Маша, с днём рождения!</div>
-            <div class="big-sub">Ты — не просто дата в календаре. Ты — целая вселенная.</div>
-            <div class="age">🎂 14 лет — ты супер! 🎂</div>
-            <div class="sub">✨ Сияй ярко ✨</div>
+            <div class="big-sub">14 лет — это не просто цифра. Это начало всего, что будет.</div>
         </section>
+
+        <div class="philosophy">
+            <span class="highlight-ph">Говорят, время летит незаметно.</span><br/>
+            Но есть люди, которые делают его <span class="highlight-ph">ощутимым</span>.<br/>
+            Ты — одна из них.<br/>
+            Пусть этот год запомнится тебе <span class="highlight-ph">чем-то настоящим</span>.<br/>
+            А всё остальное приложится.
+        </div>
 
         <!-- КАРУСЕЛЬ -->
         <div class="carousel-container">
@@ -395,25 +371,28 @@
             <button class="carousel-btn next" id="nextBtn">›</button>
         </div>
 
-        <!-- ТОЧКИ -->
         <div class="carousel-dots" id="carouselDots"></div>
 
-        <!-- ТЕКСТ ВОСХИЩЕНИЯ -->
         <div class="praise" id="praiseText">
-            <span>Ты — </span><span class="highlight">свет, который не гаснет</span><span> 🌟</span>
+            <span>Ты — </span><span class="highlight">та, кто делает мир интереснее</span><span> 🌟</span>
         </div>
 
-        <!-- СЕКРЕТНОЕ СООБЩЕНИЕ -->
         <section class="secret-section">
             <button class="secret-btn" id="secretBtn">💌 Нажми, чтобы узнать секрет</button>
             <div class="secret-message" id="secretMessage">
                 <p>
-                    💫 Знаешь, что самое удивительное?<br/><br/>
-                    В этом огромном мире есть люди, ради которых хочется творить, придумывать<br/>
-                    и верить в чудеса. Ты — одна из них.<br/><br/>
-                    Я очень хотел, чтобы этот день запомнился тебе не просто как дата,<br/>
-                    а как момент, когда ты почувствовала, как много ты значишь.<br/><br/>
-                    Ты уникальна. Не забывай об этом. ❤️
+                    💫 Знаешь, что я понял?<br/><br/>
+                    В этом мире есть люди, ради которых хочется делать что-то <span style="color:#f472b6;">настоящее</span>.<br/>
+                    Ты — одна из них.<br/><br/>
+                    Я не просто так сделал этот сайт.<br/>
+                    Я хотел, чтобы ты знала:<br/>
+                    <span style="color:#f472b6;font-weight:700;">ты крутая.</span><br/>
+                    И это не лесть, а факт.<br/><br/>
+                    Оставайся собой.<br/>
+                    А если станет грустно — вспомни, что ты уже сделала этот мир чуточку лучше.<br/><br/>
+                    С днём рождения, Маша.<br/>
+                    Ты заслуживаешь всего самого лучшего.<br/>
+                    И оно придёт. Обязательно. ❤️
                 </p>
             </div>
         </section>
@@ -427,7 +406,7 @@
     </audio>
 
     <script>
-        // ===== СТАРТОВЫЙ ЭКРАН =====
+        // СТАРТ
         const startScreen = document.getElementById('startScreen');
         const startBtn = document.getElementById('startBtn');
         const mainSite = document.getElementById('mainSite');
@@ -451,27 +430,53 @@
             }
         });
 
-        // ===== КОНФЕТТИ =====
+        // ===== КОНФЕТТИ — СТРАЗЫ =====
         function createConfetti() {
             const container = document.getElementById('confettiContainer');
-            const colors = ['#f472b6', '#ec4899', '#f9a8d4', '#fde68a', '#6ee7b7', '#60a5fa', '#c084fc', '#fca5a5'];
-            for (let i = 0; i < 50; i++) {
+            const colors = [
+                '#f472b6', '#ec4899', '#f9a8d4', '#fde68a',
+                '#6ee7b7', '#60a5fa', '#c084fc', '#fca5a5',
+                '#ffd700', '#ff6b6b', '#a29bfe', '#fd79a8'
+            ];
+            const shapes = ['circle', 'square', 'diamond'];
+
+            for (let i = 0; i < 80; i++) {
                 const el = document.createElement('div');
                 el.classList.add('confetti');
-                const size = Math.random() * 8 + 4;
+
+                const size = Math.random() * 10 + 4;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const left = Math.random() * 100;
+                const duration = Math.random() * 4 + 3;
+                const delay = Math.random() * 8;
+                const shape = shapes[Math.floor(Math.random() * shapes.length)];
+
                 el.style.width = size + 'px';
-                el.style.height = size + 'px';
-                el.style.left = Math.random() * 100 + '%';
-                el.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                el.style.animationDelay = (Math.random() * 5) + 's';
-                el.style.background = colors[Math.floor(Math.random() * colors.length)];
-                if (Math.random() > 0.5) el.style.borderRadius = '50%';
+                el.style.height = (shape === 'diamond' ? size * 0.6 : size) + 'px';
+                el.style.left = left + '%';
+                el.style.animationDuration = duration + 's';
+                el.style.animationDelay = delay + 's';
+                el.style.background = color;
+
+                if (shape === 'circle') {
+                    el.style.borderRadius = '50%';
+                } else if (shape === 'diamond') {
+                    el.style.transform = 'rotate(45deg)';
+                    el.style.borderRadius = '2px';
+                } else {
+                    el.style.borderRadius = '2px';
+                }
+
+                if (Math.random() > 0.6) {
+                    el.style.boxShadow = `0 0 6px ${color}`;
+                }
+
                 container.appendChild(el);
             }
         }
         createConfetti();
 
-        // ===== КАРУСЕЛЬ =====
+        // КАРУСЕЛЬ
         const slide = document.getElementById('carouselSlide');
         const images = slide.querySelectorAll('img');
         const total = images.length;
@@ -479,12 +484,12 @@
         let autoPlayInterval;
 
         const praiseTexts = [
-            'Ты — <span class="highlight">свет, который не гаснет</span> 🌟',
-            'Твоя улыбка — <span class="highlight">тихое счастье</span> ☀️',
-            'Ты — <span class="highlight">искренность, которую редко встретишь</span> ✨',
-            'Ты — <span class="highlight">вдохновение для всех, кто тебя знает</span> 💫',
-            'Ты — <span class="highlight">особенная. И это не просто слова</span> ❤️',
-            'Ты — <span class="highlight">целый мир, в котором хочется оставаться</span> 🌍'
+            'Ты — <span class="highlight">та, кто делает мир интереснее</span> 🌟',
+            'Твоя улыбка — <span class="highlight">тихое оружие</span> ☀️',
+            'Ты — <span class="highlight">редкая искренность в этом мире</span> ✨',
+            'Ты — <span class="highlight">повод верить в хорошее</span> 💫',
+            'Ты — <span class="highlight">особенная. И это не обсуждается</span> ❤️',
+            'Ты — <span class="highlight">целая вселенная, которую хочется изучать</span> 🌍'
         ];
 
         function updateCarousel(index) {
@@ -492,8 +497,7 @@
             document.querySelectorAll('.carousel-dots span').forEach((dot, i) => {
                 dot.classList.toggle('active', i === index);
             });
-            const praise = document.getElementById('praiseText');
-            praise.innerHTML = praiseTexts[index % praiseTexts.length];
+            document.getElementById('praiseText').innerHTML = praiseTexts[index % praiseTexts.length];
         }
 
         function goTo(index) {
@@ -522,14 +526,14 @@
         }
         resetAutoPlay();
 
-        // ===== СЕКРЕТНОЕ СООБЩЕНИЕ =====
+        // СЕКРЕТ
         document.getElementById('secretBtn').addEventListener('click', function() {
             const msg = document.getElementById('secretMessage');
             msg.classList.toggle('show');
             this.textContent = msg.classList.contains('show') ? '💌 Секрет раскрыт! 🤫' : '💌 Нажми, чтобы узнать секрет';
         });
 
-        // ===== УВЕЛИЧЕНИЕ ФОТО =====
+        // УВЕЛИЧЕНИЕ ФОТО
         images.forEach(img => {
             img.addEventListener('click', function() {
                 const overlay = document.createElement('div');
@@ -547,7 +551,7 @@
             });
         });
 
-        // ===== КЛАВИШИ =====
+        // КЛАВИШИ
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') nextSlide();
             if (e.key === 'ArrowLeft') prevSlide();
