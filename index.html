@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Маша, с днём рождения! 🎉</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Inter:wght@300;400;700&display=swap" rel="stylesheet"/>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f0720;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* === СТАРТОВЫЙ ЭКРАН === */
+        .start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a0b2e, #2d1b4e, #1a0b2e);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1000;
+            padding: 20px;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .start-screen.hidden {
+            opacity: 0;
+            transform: scale(1.05);
+            pointer-events: none;
+        }
+
+        .start-screen h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 10vw, 72px);
+            background: linear-gradient(90deg, #f9a8d4, #f472b6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+        }
+        .start-screen .sub {
+            font-size: 18px;
+            color: #c4b5d4;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+        .start-screen .emoji-big {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .start-btn {
+            background: linear-gradient(90deg, #f472b6, #ec4899);
+            border: none;
+            padding: 18px 48px;
+            border-radius: 60px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 40px rgba(244, 114, 182, 0.4);
+            animation: pulseBtn 2s infinite ease-in-out;
+        }
+        .start-btn:hover {
+            transform: scale(1.06);
+        }
+        @keyframes pulseBtn {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+        }
+
+        .start-screen .hint {
+            font-size: 14px;
+            color: #6b5b7a;
+            margin-top: 20px;
+        }
+
+        /* === ОСНОВНОЙ САЙТ === */
+        .main-site {
+            opacity: 0;
+            transition: opacity 1s ease;
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .main-site.show {
+            opacity: 1;
+        }
+
+        /* КОНФЕТТИ */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            animation: confettiFall linear infinite;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* ШАПКА */
+        .hero {
+            text-align: center;
+            padding: 20px 0 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .big {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(40px, 10vw, 72px);
+            font-weight: 600;
+            font-style: italic;
+            background: linear-gradient(90deg, #f9a8d4, #f472b6, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            0% { filter: drop-shadow(0 0 20px rgba(244, 114, 182, 0.3)); }
+            100% { filter: drop-shadow(0 0 50px rgba(244, 114, 182, 0.7)); }
+        }
+        .hero .sub {
+            font-size: 16px;
+            color: #c4b5d4;
+            letter-spacing: 4px;
+            margin-top: 4px;
+        }
+        .hero .age {
+            font-size: 24px;
+            font-weight: 700;
+            color: #f472b6;
+            margin-top: 2px;
+        }
+
+        /* КАРУСЕЛЬ С ФОТО */
+        .carousel-container {
+            position: relative;
+            max-width: 600px;
+            margin: 30px auto;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 60px rgba(0,0,0,0.5);
+            border: 2px solid rgba(244, 114, 182, 0.2);
+            background: #1a0b2e;
+        }
+        .carousel-slide {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            border: none;
+            color: #fff;
+            font-size: 32px;
+            padding: 8px 16px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            z-index: 10;
+        }
+        .carousel-btn:hover {
+            background: rgba(244, 114, 182, 0.6);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .carousel-btn.prev {
+            left: 12px;
+        }
+        .carousel-btn.next {
+            right: 12px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 0 0;
+        }
+        .carousel-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #3d2a5a;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .carousel-dots span.active {
+            background: #f472b6;
+            transform: scale(1.3);
+        }
+
+        /* ТЕКСТ ВОСХИЩЕНИЯ ПОД ФОТО */
+        .praise {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 300;
+            color: #e5d9f0;
+            padding: 16px 0 8px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            transition: opacity 0.4s ease;
+        }
+        .praise .highlight {
+            color: #f472b6;
+            font-weight: 700;
+        }
+
+        /* СЕКРЕТНОЕ СООБЩЕНИЕ */
+        .secret-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .secret-btn {
+            background: linear-gradient(90deg, #f472b6, #ec4899);
+            border: none;
+            padding: 14px 36px;
+            border-radius: 60px;
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 30px rgba(244, 114, 182, 0.3);
+        }
+        .secret-btn:hover {
+            transform: scale(1.06);
+        }
+        .secret-message {
+            display: none;
+            background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 24px;
+            margin-top: 16px;
+            border: 1px solid rgba(244, 114, 182, 0.2);
+            animation: fadeUp 0.6s ease;
+        }
+        .secret-message.show {
+            display: block;
+        }
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .secret-message p {
+            font-size: 18px;
+            color: #f9d4e8;
+        }
+
+        .hashtag {
+            text-align: center;
+            font-size: 14px;
+            color: #6b5b7a;
+            margin-top: 30px;
+            letter-spacing: 2px;
+        }
+
+        /* АДАПТИВ */
+        @media (max-width: 600px) {
+            .carousel-slide img {
+                height: 280px;
+            }
+            .main-site {
+                padding: 20px 12px;
+            }
+            .praise {
+                font-size: 17px;
+                min-height: 60px;
+                padding: 12px 0 4px;
+            }
+            .hero .big {
+                font-size: 32px;
+            }
+            .secret-btn {
+                padding: 12px 24px;
+                font-size: 15px;
+            }
+            .start-screen h1 {
+                font-size: 32px;
+            }
+            .start-btn {
+                padding: 14px 32px;
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== СТАРТОВЫЙ ЭКРАН ===== -->
+    <div class="start-screen" id="startScreen">
+        <div class="emoji-big">🎂</div>
+        <h1>Привет, Маша!</h1>
+        <div class="sub">✨ Сначала включи музыку, а потом начнётся магия ✨</div>
+        <button class="start-btn" id="startBtn">🎵 Включить музыку и начать</button>
+        <div class="hint">Нажми на кнопку, и мы начнём!</div>
+    </div>
+
+    <!-- ===== КОНФЕТТИ ===== -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- ===== ОСНОВНОЙ САЙТ ===== -->
+    <div class="main-site" id="mainSite">
+
+        <!-- ШАПКА -->
+        <section class="hero">
+            <div class="big">Маша, с днём рождения!</div>
+            <div class="age">🎂 14 лет — ты супер! 🎂</div>
+            <div class="sub">✨ Сияй ярко ✨</div>
+        </section>
+
+        <!-- КАРУСЕЛЬ -->
+        <div class="carousel-container">
+            <div class="carousel-slide" id="carouselSlide">
+                <!-- ЗАМЕНИ ФОТО НА СВОИ -->
+                <img src="masha1.jpg" alt="Маша 1" />
+                <img src="masha2.jpg" alt="Маша 2" />
+                <img src="masha3.jpg" alt="Маша 3" />
+                <img src="masha4.jpg" alt="Маша 4" />
+                <img src="masha5.jpg" alt="Маша 5" />
+                <img src="masha6.jpg" alt="Маша 6" />
+            </div>
+            <button class="carousel-btn prev" id="prevBtn">‹</button>
+            <button class="carousel-btn next" id="nextBtn">›</button>
+        </div>
+
+        <!-- ТОЧКИ НАВИГАЦИИ -->
+        <div class="carousel-dots" id="carouselDots"></div>
+
+        <!-- ТЕКСТ ВОСХИЩЕНИЯ -->
+        <div class="praise" id="praiseText">
+            <span>Ты — </span><span class="highlight">самая яркая звезда</span><span> 🌟</span>
+        </div>
+
+        <!-- СЕКРЕТНОЕ СООБЩЕНИЕ -->
+        <section class="secret-section">
+            <button class="secret-btn" id="secretBtn">💌 Нажми, чтобы узнать секрет</button>
+            <div class="secret-message" id="secretMessage">
+                <p>💫 Ты — причина, почему этот сайт появился на свет! 💫<br/>
+                Я очень хотел сделать для тебя что-то особенное. Ты этого заслуживаешь. Будь счастлива! ❤️</p>
+            </div>
+        </section>
+
+        <div class="hashtag">#Маша14 #СДнёмРождения #ТыСупер</div>
+    </div>
+
+    <!-- АУДИО -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // ===== СТАРТОВЫЙ ЭКРАН =====
+        const startScreen = document.getElementById('startScreen');
+        const startBtn = document.getElementById('startBtn');
+        const mainSite = document.getElementById('mainSite');
+        const audio = document.getElementById('bgMusic');
+        let isMusicStarted = false;
+
+        startBtn.addEventListener('click', function() {
+            if (!isMusicStarted) {
+                audio.volume = 0.4;
+                audio.play()
+                    .then(() => {
+                        isMusicStarted = true;
+                        // Скрываем стартовый экран
+                        startScreen.classList.add('hidden');
+                        // Показываем основной сайт
+                        setTimeout(() => {
+                            mainSite.classList.add('show');
+                        }, 300);
+                    })
+                    .catch(() => {
+                        alert('Не удалось запустить музыку. Нажми ещё раз 🙏');
+                    });
+            }
+        });
+
+        // ===== КОНФЕТТИ =====
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#f472b6', '#ec4899', '#f9a8d4', '#fde68a', '#6ee7b7', '#60a5fa', '#c084fc', '#fca5a5'];
+            for (let i = 0; i < 50; i++) {
+                const el = document.createElement('div');
+                el.classList.add('confetti');
+                const size = Math.random() * 8 + 4;
+                el.style.width = size + 'px';
+                el.style.height = size + 'px';
+                el.style.left = Math.random() * 100 + '%';
+                el.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                el.style.animationDelay = (Math.random() * 5) + 's';
+                el.style.background = colors[Math.floor(Math.random() * colors.length)];
+                if (Math.random() > 0.5) el.style.borderRadius = '50%';
+                container.appendChild(el);
+            }
+        }
+        createConfetti();
+
+        // ===== КАРУСЕЛЬ =====
+        const slide = document.getElementById('carouselSlide');
+        const images = slide.querySelectorAll('img');
+        const total = images.length;
+        let current = 0;
+        let autoPlayInterval;
+
+        const praiseTexts = [
+            'Ты — <span class="highlight">самая яркая звезда</span> 🌟',
+            'Твоя улыбка <span class="highlight">светит ярче солнца</span> ☀️',
+            'Ты — <span class="highlight">настоящее чудо</span> ✨',
+            'С тобой мир становится <span class="highlight">красочнее</span> 🎨',
+            'Ты — <span class="highlight">лучшая подруга</span> на свете ❤️',
+            'Ты <span class="highlight">заслуживаешь всего самого лучшего</span> 💫'
+        ];
+
+        function updateCarousel(index) {
+            slide.style.transform = `translateX(-${index * 100}%)`;
+            document.querySelectorAll('.carousel-dots span').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            const praise = document.getElementById('praiseText');
+            praise.innerHTML = praiseTexts[index % praiseTexts.length];
+        }
+
+        function goTo(index) {
+            current = (index + total) % total;
+            updateCarousel(current);
+            resetAutoPlay();
+        }
+
+        function nextSlide() { goTo(current + 1); }
+        function prevSlide() { goTo(current - 1); }
+
+        document.getElementById('nextBtn').addEventListener('click', nextSlide);
+        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+
+        // ТОЧКИ
+        const dotsContainer = document.getElementById('carouselDots');
+        for (let i = 0; i < total; i++) {
+            const dot = document.createElement('span');
+            dot.addEventListener('click', () => goTo(i));
+            dotsContainer.appendChild(dot);
+        }
+        updateCarousel(0);
+
+        // АВТОПЛЕЙ (каждые 3.5 сек)
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = setInterval(nextSlide, 3500);
+        }
+        resetAutoPlay();
+
+        // ===== СЕКРЕТНОЕ СООБЩЕНИЕ =====
+        document.getElementById('secretBtn').addEventListener('click', function() {
+            const msg = document.getElementById('secretMessage');
+            msg.classList.toggle('show');
+            this.textContent = msg.classList.contains('show') ? '💌 Секрет раскрыт! 🤫' : '💌 Нажми, чтобы узнать секрет';
+        });
+
+        // ===== ПРИ КЛИКЕ НА ФОТО — УВЕЛИЧЕНИЕ =====
+        images.forEach(img => {
+            img.addEventListener('click', function() {
+                const overlay = document.createElement('div');
+                overlay.style.cssText = `
+                    position: fixed; top:0; left:0; width:100%; height:100%;
+                    background: rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center;
+                    z-index:1000; cursor:pointer; backdrop-filter:blur(8px);
+                `;
+                const big = document.createElement('img');
+                big.src = this.src;
+                big.style.cssText = `max-width:90%; max-height:90%; border-radius:24px; box-shadow:0 0 60px rgba(244,114,182,0.4); animation:fadeUp 0.4s ease;`;
+                overlay.appendChild(big);
+                document.body.appendChild(overlay);
+                overlay.addEventListener('click', () => overlay.remove());
+            });
+        });
+
+        // ===== КЛАВИШИ СТРЕЛКИ =====
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+</body>
+</html>
