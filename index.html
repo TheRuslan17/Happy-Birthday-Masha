@@ -85,17 +85,46 @@
             margin-top: 20px;
         }
 
-        /* ОСНОВНОЙ САЙТ */
+        /* ===== ОСНОВНОЙ САЙТ С ФОНОМ ===== */
         .main-site {
             opacity: 0;
             transition: opacity 1s ease;
             padding: 40px 20px;
             max-width: 900px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
         }
         .main-site.show { opacity: 1; }
 
-        /* КОНФЕТТИ — СТРАЗЫ */
+        /* ФОН НА ВТОРОЙ СТРАНИЦЕ */
+        .main-site::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('fon_szadi.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -2;
+            opacity: 0.7;
+        }
+        .main-site::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(250, 247, 242, 0.85);
+            z-index: -1;
+        }
+
+        /* КОНФЕТТИ */
         .confetti-container {
             position: fixed;
             top: 0;
@@ -162,10 +191,10 @@
             max-width: 700px;
             margin: 20px auto 30px;
             padding: 24px 20px;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(6px);
             border-radius: 20px;
-            border: 1px solid #ede5dd;
+            border: 1px solid rgba(255, 255, 255, 0.4);
             line-height: 1.9;
             font-size: 18px;
             color: #3d2e2a;
@@ -184,8 +213,9 @@
             border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 12px 60px rgba(176, 124, 106, 0.15);
-            border: 2px solid #ede5dd;
-            background: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(4px);
         }
         .carousel-slide {
             display: flex;
@@ -204,7 +234,7 @@
             transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(8px);
-            border: 1px solid #ede5dd;
+            border: 1px solid rgba(255, 255, 255, 0.5);
             color: #3d2e2a;
             font-size: 28px;
             padding: 8px 16px;
@@ -231,7 +261,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: #ede5dd;
+            background: rgba(237, 229, 221, 0.6);
             cursor: pointer;
             transition: background 0.3s ease, transform 0.3s ease;
         }
@@ -281,12 +311,12 @@
         .secret-btn:hover { transform: scale(1.06); }
         .secret-message {
             display: none;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.5);
             backdrop-filter: blur(8px);
             border-radius: 20px;
             padding: 30px 24px;
             margin-top: 16px;
-            border: 1px solid #ede5dd;
+            border: 1px solid rgba(255, 255, 255, 0.4);
             animation: fadeUp 0.6s ease;
             max-width: 600px;
             margin-left: auto;
@@ -327,6 +357,9 @@
             .start-screen .sub { font-size: 16px; }
             .secret-message p { font-size: 16px; }
             .philosophy { font-size: 16px; padding: 20px 16px; }
+            .main-site::before {
+                background-attachment: scroll;
+            }
         }
     </style>
 </head>
@@ -347,7 +380,7 @@
     <!-- КОНФЕТТИ -->
     <div class="confetti-container" id="confettiContainer"></div>
 
-    <!-- ОСНОВНОЙ САЙТ -->
+    <!-- ОСНОВНОЙ САЙТ С ФОНОМ -->
     <div class="main-site" id="mainSite">
 
         <section class="hero">
@@ -363,15 +396,16 @@
             А всё остальное приложится.
         </div>
 
-        <!-- КАРУСЕЛЬ -->
+        <!-- КАРУСЕЛЬ С 7 ФОТО -->
         <div class="carousel-container">
             <div class="carousel-slide" id="carouselSlide">
-                <img src="masha1.jpg" alt="Маша 1" />
-                <img src="masha2.jpg" alt="Маша 2" />
-                <img src="masha3.jpg" alt="Маша 3" />
-                <img src="masha4.jpg" alt="Маша 4" />
-                <img src="masha5.jpg" alt="Маша 5" />
-                <img src="masha6.jpg" alt="Маша 6" />
+                <img src="1.jpg" alt="Маша 1" />
+                <img src="2.jpg" alt="Маша 2" />
+                <img src="3.jpg" alt="Маша 3" />
+                <img src="4.jpg" alt="Маша 4" />
+                <img src="5.jpg" alt="Маша 5" />
+                <img src="6.jpg" alt="Маша 6" />
+                <img src="7.jpg" alt="Маша 7" />
             </div>
             <button class="carousel-btn prev" id="prevBtn">‹</button>
             <button class="carousel-btn next" id="nextBtn">›</button>
@@ -482,10 +516,10 @@
         }
         createConfetti();
 
-        // КАРУСЕЛЬ
+        // ===== КАРУСЕЛЬ С 7 ФОТО =====
         const slide = document.getElementById('carouselSlide');
         const images = slide.querySelectorAll('img');
-        const total = images.length;
+        const total = images.length; // теперь total = 7
         let current = 0;
         let autoPlayInterval;
 
@@ -495,7 +529,8 @@
             'Ты — <span class="highlight">редкая искренность в этом мире</span> ✨',
             'Ты — <span class="highlight">повод верить в хорошее</span> 💫',
             'Ты — <span class="highlight">особенная. И это не обсуждается</span> ❤️',
-            'Ты — <span class="highlight">целая вселенная, которую хочется изучать</span> 🌍'
+            'Ты — <span class="highlight">целая вселенная, которую хочется изучать</span> 🌍',
+            'Ты — <span class="highlight">свет, который не гаснет</span> 🌟'
         ];
 
         function updateCarousel(index) {
