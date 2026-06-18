@@ -6,19 +6,19 @@
 
     <!-- ===== OPEN GRAPH ДЛЯ ПРЕВЬЮ В МЕССЕНДЖЕРАХ ===== -->
     <title>🎉 Маша, с днём рождения!</title>
-    <meta property="og:title" content="🎉 Маша, с днём рождения!" />
-    <!-- Убираем описание, чтобы показывался только заголовок -->
-    <meta property="og:description" content="" />
-    <!-- Убираем картинку -->
-    <meta property="og:image" content="" />
+    <meta property="og:title" content="🎉 Маша, с днём рождения! Сюрприз ждёт тебя!" />
+    <meta property="og:description" content="Загадка, музыка, твои фотки, торт со свечами и секретное сообщение. Открой и угадай ответ! ❤️" />
+    <meta property="og:image" content="https://theruslan17.github.io/wedding-invite/chat.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:url" content="https://theruslan17.github.io/wedding-invite/" />
     <meta property="og:type" content="website" />
 
     <!-- Для Twitter -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="🎉 Маша, с днём рождения!" />
-    <meta name="twitter:description" content="" />
-    <meta name="twitter:image" content="" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="🎉 Маша, с днём рождения! Сюрприз ждёт тебя!" />
+    <meta name="twitter:description" content="Загадка, музыка, твои фотки, торт со свечами и секретное сообщение. Открой и угадай ответ! ❤️" />
+    <meta name="twitter:image" content="https://theruslan17.github.io/wedding-invite/chat.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,7 +34,7 @@
             overflow-x: hidden;
         }
 
-        /* ===== ЛЕТАЮЩИЕ СЕРДЕЧКИ ===== */
+        /* ===== ЛЕТАЮЩИЕ СЕРДЕЧКИ (ОПТИМИЗИРОВАНЫ) ===== */
         .hearts-container {
             position: fixed;
             top: 0;
@@ -48,15 +48,14 @@
         .heart {
             position: absolute;
             bottom: -40px;
-            font-size: 24px;
+            font-size: 20px;
             animation: heartFloat linear infinite;
-            opacity: 0.7;
-            filter: drop-shadow(0 0 10px rgba(255, 100, 150, 0.3));
-            will-change: transform, opacity;
+            opacity: 0.6;
+            will-change: transform;
         }
         @keyframes heartFloat {
-            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0.8; }
-            100% { transform: translateY(-110vh) rotate(720deg) scale(1.2); opacity: 0.1; }
+            0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0.6; }
+            100% { transform: translateY(-110vh) rotate(360deg) scale(1); opacity: 0; }
         }
 
         /* ===== СТАРТОВЫЙ ЭКРАН ===== */
@@ -283,7 +282,7 @@
             font-style: italic;
         }
 
-        /* КАРУСЕЛЬ */
+        /* ===== КАРУСЕЛЬ (АВТОПЛЕЙ УБРАН) ===== */
         .carousel-container {
             position: relative;
             max-width: 700px;
@@ -297,7 +296,7 @@
         }
         .carousel-slide {
             display: flex;
-            transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .carousel-slide img {
             width: 100%;
@@ -373,7 +372,7 @@
             font-style: normal;
         }
 
-        /* ===== ТОРТ СО СВЕЧАМИ ===== */
+        /* ===== ТОРТ ===== */
         .cake-section {
             text-align: center;
             margin: 40px 0 20px;
@@ -612,6 +611,7 @@
             А всё остальное приложится.
         </div>
 
+        <!-- ===== КАРУСЕЛЬ (БЕЗ АВТОПЛЕЯ) ===== -->
         <div class="carousel-container">
             <div class="carousel-slide" id="carouselSlide">
                 <img src="1.jpg" alt="Маша 1" />
@@ -678,30 +678,20 @@
     </audio>
 
     <script>
-        // ===== ЛЕТАЮЩИЕ СЕРДЕЧКИ =====
+        // ===== ЛЕТАЮЩИЕ СЕРДЕЧКИ (ОПТИМИЗИРОВАНЫ) =====
         function createHearts() {
             const container = document.getElementById('heartsContainer');
-            const heartSymbols = ['❤️', '💕', '💖', '💗', '♥️', '💝'];
-            const colors = ['#ff6b8a', '#ff8a9b', '#ff9eb5', '#ffb3c6', '#ffd1dc', '#ff4d6d'];
+            const symbols = ['❤️', '💕', '💖', '♥️'];
 
-            for (let i = 0; i < 25; i++) {
+            for (let i = 0; i < 15; i++) {
                 const el = document.createElement('div');
                 el.classList.add('heart');
-                const symbol = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-                const size = Math.random() * 20 + 18;
-                const left = Math.random() * 100;
-                const duration = Math.random() * 12 + 10;
-                const delay = Math.random() * 15;
-                const color = colors[Math.floor(Math.random() * colors.length)];
-
-                el.textContent = symbol;
-                el.style.left = left + '%';
-                el.style.fontSize = size + 'px';
-                el.style.animationDuration = duration + 's';
-                el.style.animationDelay = delay + 's';
-                el.style.color = color;
-                el.style.filter = `drop-shadow(0 0 12px ${color}40)`;
-
+                el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                el.style.left = Math.random() * 100 + '%';
+                el.style.fontSize = (Math.random() * 16 + 14) + 'px';
+                el.style.animationDuration = (Math.random() * 10 + 8) + 's';
+                el.style.animationDelay = (Math.random() * 12) + 's';
+                el.style.color = ['#ff6b8a', '#ff8a9b', '#ffb3c6', '#ff4d6d'][Math.floor(Math.random() * 4)];
                 container.appendChild(el);
             }
         }
@@ -761,12 +751,11 @@
             riddleInput.focus();
         });
 
-        // ===== КАРУСЕЛЬ =====
+        // ===== КАРУСЕЛЬ (БЕЗ АВТОПЛЕЯ) =====
         const slide = document.getElementById('carouselSlide');
         const images = slide.querySelectorAll('img');
         const total = images.length;
         let current = 0;
-        let autoPlayInterval;
 
         const praiseTexts = [
             'Ты — <span class="highlight">та, кто делает мир интереснее</span> 🌟',
@@ -789,28 +778,30 @@
         function goTo(index) {
             current = (index + total) % total;
             updateCarousel(current);
-            resetAutoPlay();
         }
 
         function nextSlide() { goTo(current + 1); }
         function prevSlide() { goTo(current - 1); }
 
-        document.getElementById('nextBtn').addEventListener('click', nextSlide);
-        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+        document.getElementById('nextBtn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            nextSlide();
+        });
+        document.getElementById('prevBtn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            prevSlide();
+        });
 
         const dotsContainer = document.getElementById('carouselDots');
         for (let i = 0; i < total; i++) {
             const dot = document.createElement('span');
-            dot.addEventListener('click', () => goTo(i));
+            dot.addEventListener('click', function(e) {
+                e.stopPropagation();
+                goTo(i);
+            });
             dotsContainer.appendChild(dot);
         }
         updateCarousel(0);
-
-        function resetAutoPlay() {
-            clearInterval(autoPlayInterval);
-            autoPlayInterval = setInterval(nextSlide, 3500);
-        }
-        resetAutoPlay();
 
         // ===== ТОРТ =====
         const cakeBtn = document.getElementById('cakeBtn');
@@ -895,12 +886,6 @@
                 document.body.appendChild(overlay);
                 overlay.addEventListener('click', () => overlay.remove());
             });
-        });
-
-        // ===== КЛАВИШИ =====
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') nextSlide();
-            if (e.key === 'ArrowLeft') prevSlide();
         });
     </script>
 </body>
