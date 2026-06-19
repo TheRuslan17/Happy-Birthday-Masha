@@ -6,19 +6,16 @@
 
     <!-- ===== OPEN GRAPH ДЛЯ ПРЕВЬЮ В МЕССЕНДЖЕРАХ ===== -->
     <title>🎉 Маша, с днём рождения!</title>
-    <meta property="og:title" content="🎉 Маша, с днём рождения! Сюрприз ждёт тебя!" />
-    <meta property="og:description" content="Загадка, музыка, твои фотки, торт со свечами и секретное сообщение. Открой и угадай ответ! ❤️" />
-    <meta property="og:image" content="https://theruslan17.github.io/wedding-invite/chat.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:title" content="🎉 Маша, с днём рождения!" />
+    <meta property="og:description" content="🎉 Маша, с днём рождения!" />
+    <meta property="og:image" content="" />
     <meta property="og:url" content="https://theruslan17.github.io/wedding-invite/" />
     <meta property="og:type" content="website" />
 
-    <!-- Для Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="🎉 Маша, с днём рождения! Сюрприз ждёт тебя!" />
-    <meta name="twitter:description" content="Загадка, музыка, твои фотки, торт со свечами и секретное сообщение. Открой и угадай ответ! ❤️" />
-    <meta name="twitter:image" content="https://theruslan17.github.io/wedding-invite/chat.jpg" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="🎉 Маша, с днём рождения!" />
+    <meta name="twitter:description" content="🎉 Маша, с днём рождения!" />
+    <meta name="twitter:image" content="" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,7 +31,6 @@
             overflow-x: hidden;
         }
 
-        /* ===== ЛЕТАЮЩИЕ СЕРДЕЧКИ (ОПТИМИЗИРОВАНЫ) ===== */
         .hearts-container {
             position: fixed;
             top: 0;
@@ -58,7 +54,6 @@
             100% { transform: translateY(-110vh) rotate(360deg) scale(1); opacity: 0; }
         }
 
-        /* ===== СТАРТОВЫЙ ЭКРАН ===== */
         .start-screen {
             position: fixed;
             top: 0;
@@ -189,7 +184,6 @@
             transform: scale(1.05);
         }
 
-        /* ===== ОСНОВНОЙ САЙТ ===== */
         .main-site {
             opacity: 0;
             transition: opacity 1s ease;
@@ -282,7 +276,7 @@
             font-style: italic;
         }
 
-        /* ===== КАРУСЕЛЬ (АВТОПЛЕЙ УБРАН) ===== */
+        /* ===== КАРУСЕЛЬ (ПЛАВНЫЙ АВТОПЛЕЙ, БЕЗ СТРЕЛОК) ===== */
         .carousel-container {
             position: relative;
             max-width: 700px;
@@ -296,7 +290,7 @@
         }
         .carousel-slide {
             display: flex;
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .carousel-slide img {
             width: 100%;
@@ -304,30 +298,6 @@
             object-fit: cover;
             flex-shrink: 0;
         }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            color: #3d2e2a;
-            font-size: 28px;
-            padding: 12px 18px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-        .carousel-btn:hover {
-            background: #b07c6a;
-            color: #fff;
-            transform: translateY(-50%) scale(1.1);
-        }
-        .carousel-btn.prev { left: 16px; }
-        .carousel-btn.next { right: 16px; }
 
         .carousel-dots {
             display: flex;
@@ -372,7 +342,6 @@
             font-style: normal;
         }
 
-        /* ===== ТОРТ ===== */
         .cake-section {
             text-align: center;
             margin: 40px 0 20px;
@@ -564,12 +533,6 @@
             .secret-message p { font-size: 17px; }
             .philosophy { font-size: 16px; padding: 24px 18px; }
             .main-site::before { background-attachment: scroll; }
-            .carousel-btn {
-                font-size: 22px;
-                padding: 10px 14px;
-            }
-            .carousel-btn.prev { left: 10px; }
-            .carousel-btn.next { right: 10px; }
             .cake { font-size: 50px; }
             .cake .cake-body { font-size: 50px; }
             .cake .flames { font-size: 22px; }
@@ -611,7 +574,7 @@
             А всё остальное приложится.
         </div>
 
-        <!-- ===== КАРУСЕЛЬ (БЕЗ АВТОПЛЕЯ) ===== -->
+        <!-- ===== КАРУСЕЛЬ (ПЛАВНЫЙ АВТОПЛЕЙ, БЕЗ СТРЕЛОК) ===== -->
         <div class="carousel-container">
             <div class="carousel-slide" id="carouselSlide">
                 <img src="1.jpg" alt="Маша 1" />
@@ -622,8 +585,6 @@
                 <img src="6.jpg" alt="Маша 6" />
                 <img src="7.jpg" alt="Маша 7" />
             </div>
-            <button class="carousel-btn prev" id="prevBtn">‹</button>
-            <button class="carousel-btn next" id="nextBtn">›</button>
         </div>
 
         <div class="carousel-dots" id="carouselDots"></div>
@@ -678,7 +639,7 @@
     </audio>
 
     <script>
-        // ===== ЛЕТАЮЩИЕ СЕРДЕЧКИ (ОПТИМИЗИРОВАНЫ) =====
+        // ===== ЛЕТАЮЩИЕ СЕРДЕЧКИ =====
         function createHearts() {
             const container = document.getElementById('heartsContainer');
             const symbols = ['❤️', '💕', '💖', '♥️'];
@@ -751,11 +712,12 @@
             riddleInput.focus();
         });
 
-        // ===== КАРУСЕЛЬ (БЕЗ АВТОПЛЕЯ) =====
+        // ===== КАРУСЕЛЬ (ПЛАВНЫЙ АВТОПЛЕЙ) =====
         const slide = document.getElementById('carouselSlide');
         const images = slide.querySelectorAll('img');
         const total = images.length;
         let current = 0;
+        let autoplayInterval;
 
         const praiseTexts = [
             'Ты — <span class="highlight">та, кто делает мир интереснее</span> 🌟',
@@ -780,28 +742,34 @@
             updateCarousel(current);
         }
 
-        function nextSlide() { goTo(current + 1); }
-        function prevSlide() { goTo(current - 1); }
+        function nextSlide() {
+            goTo(current + 1);
+        }
 
-        document.getElementById('nextBtn').addEventListener('click', function(e) {
-            e.stopPropagation();
-            nextSlide();
-        });
-        document.getElementById('prevBtn').addEventListener('click', function(e) {
-            e.stopPropagation();
-            prevSlide();
-        });
-
+        // ТОЧКИ
         const dotsContainer = document.getElementById('carouselDots');
         for (let i = 0; i < total; i++) {
             const dot = document.createElement('span');
             dot.addEventListener('click', function(e) {
                 e.stopPropagation();
                 goTo(i);
+                resetAutoplay();
             });
             dotsContainer.appendChild(dot);
         }
         updateCarousel(0);
+
+        // АВТОПЛЕЙ (каждые 5 секунд, плавно)
+        function startAutoplay() {
+            autoplayInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplayInterval);
+            startAutoplay();
+        }
+
+        startAutoplay();
 
         // ===== ТОРТ =====
         const cakeBtn = document.getElementById('cakeBtn');
