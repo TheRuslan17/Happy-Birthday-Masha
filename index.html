@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- ===== OPEN GRAPH ДЛЯ ПРЕВЬЮ В МЕССЕНДЖЕРАХ ===== -->
+    <!-- ===== OPEN GRAPH ДЛЯ ПРЕВЬЮ В МЕССЕНДЖЕРАХ (НОВОЕ ИМЯ ФАЙЛА) ===== -->
     <title>🎉 Маша, с днём рождения!</title>
     <meta property="og:title" content="🎉 Маша, с днём рождения!" />
     <meta property="og:description" content="🎉 Маша, с днём рождения!" />
-    <meta property="og:image" content="https://theruslan17.github.io/wedding-invite/chat.jpg" />
+    <meta property="og:image" content="https://theruslan17.github.io/wedding-invite/chat2.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content="https://theruslan17.github.io/wedding-invite/" />
@@ -17,7 +17,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="🎉 Маша, с днём рождения!" />
     <meta name="twitter:description" content="🎉 Маша, с днём рождения!" />
-    <meta name="twitter:image" content="https://theruslan17.github.io/wedding-invite/chat.jpg" />
+    <meta name="twitter:image" content="https://theruslan17.github.io/wedding-invite/chat2.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -696,7 +696,6 @@
                 riddleHint.textContent = '❌ Не угадала... Попробуй ещё раз!';
                 riddleHint.className = 'hint error';
                 riddleInput.value = '';
-                // НЕ ФОКУСИРУЕМСЯ НА ПОЛЕ — убираем клавиатуру
             }
         }
 
@@ -706,11 +705,9 @@
             if (e.key === 'Enter') tryUnlock();
         });
 
-        // ===== ПОДСКАЗКА — БЕЗ ОТКРЫТИЯ КЛАВИАТУРЫ =====
         hintBtn.addEventListener('click', function() {
             riddleHint.textContent = '💡 Подсказка: её имя начинается на букву "М"';
             riddleHint.className = 'hint';
-            // Убираем фокус с поля ввода, чтобы клавиатура не открывалась
             if (document.activeElement === riddleInput) {
                 riddleInput.blur();
             }
