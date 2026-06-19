@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- ===== OPEN GRAPH ДЛЯ ПРЕВЬЮ В МЕССЕНДЖЕРАХ (НОВОЕ ИМЯ ФАЙЛА) ===== -->
+    <!-- ===== OPEN GRAPH ===== -->
     <title>🎉 Маша, с днём рождения!</title>
     <meta property="og:title" content="🎉 Маша, с днём рождения!" />
     <meta property="og:description" content="🎉 Маша, с днём рождения!" />
-    <meta property="og:image" content="https://theruslan17.github.io/wedding-invite/chat2.jpg" />
+    <meta property="og:image" content="https://theruslan17.github.io/wedding-invite/0.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content="https://theruslan17.github.io/wedding-invite/" />
@@ -17,7 +17,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="🎉 Маша, с днём рождения!" />
     <meta name="twitter:description" content="🎉 Маша, с днём рождения!" />
-    <meta name="twitter:image" content="https://theruslan17.github.io/wedding-invite/chat2.jpg" />
+    <meta name="twitter:image" content="https://theruslan17.github.io/wedding-invite/0.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -56,13 +56,13 @@
             100% { transform: translateY(-110vh) rotate(360deg) scale(1); opacity: 0; }
         }
 
+        /* ===== СТАРТОВЫЙ ЭКРАН С ФОНОМ fon_v_nachale.jpg ===== */
         .start-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #faf7f2;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -71,6 +71,20 @@
             z-index: 1000;
             padding: 20px;
             transition: opacity 0.8s ease, transform 0.8s ease;
+            background-image: url('fon_v_nachale.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .start-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(250, 247, 242, 0.85);
+            z-index: -1;
         }
         .start-screen.hidden {
             opacity: 0;
@@ -82,6 +96,8 @@
             font-size: 60px;
             margin-bottom: 12px;
             animation: float 3s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
         }
         @keyframes float {
             0%, 100% { transform: translateY(0); }
@@ -98,6 +114,8 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 8px;
             letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
         }
         .start-screen .sub {
             font-family: 'Inter', sans-serif;
@@ -108,6 +126,8 @@
             letter-spacing: 2px;
             max-width: 500px;
             line-height: 1.8;
+            position: relative;
+            z-index: 1;
         }
         .start-screen .riddle-box {
             display: flex;
@@ -117,6 +137,8 @@
             width: 100%;
             max-width: 360px;
             margin-top: 10px;
+            position: relative;
+            z-index: 1;
         }
         .start-screen .riddle-box input {
             width: 100%;
@@ -186,6 +208,7 @@
             transform: scale(1.05);
         }
 
+        /* ===== ОСНОВНОЙ САЙТ С ФОНОМ fon_szadi.jpg ===== */
         .main-site {
             opacity: 0;
             transition: opacity 1s ease;
@@ -539,6 +562,9 @@
             .cake .flames { font-size: 22px; }
             .cake-section .cake-title { font-size: 18px; }
             .cake-message { font-size: 20px; }
+            .start-screen {
+                background-attachment: scroll;
+            }
         }
     </style>
 </head>
@@ -546,6 +572,7 @@
 
     <div class="hearts-container" id="heartsContainer"></div>
 
+    <!-- ===== СТАРТОВЫЙ ЭКРАН (ФОН fon_v_nachale.jpg) ===== -->
     <div class="start-screen" id="startScreen">
         <div class="emoji-big">🤔</div>
         <h1>Проверь свою интуицию!</h1>
@@ -560,6 +587,7 @@
         </div>
     </div>
 
+    <!-- ===== ОСНОВНОЙ САЙТ (ФОН fon_szadi.jpg) ===== -->
     <div class="main-site" id="mainSite">
 
         <section class="hero">
