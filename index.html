@@ -8,14 +8,16 @@
     <title>🎉 Маша, с днём рождения!</title>
     <meta property="og:title" content="🎉 Маша, с днём рождения!" />
     <meta property="og:description" content="🎉 Маша, с днём рождения!" />
-    <meta property="og:image" content="" />
+    <meta property="og:image" content="https://theruslan17.github.io/wedding-invite/chat.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:url" content="https://theruslan17.github.io/wedding-invite/" />
     <meta property="og:type" content="website" />
 
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="🎉 Маша, с днём рождения!" />
     <meta name="twitter:description" content="🎉 Маша, с днём рождения!" />
-    <meta name="twitter:image" content="" />
+    <meta name="twitter:image" content="https://theruslan17.github.io/wedding-invite/chat.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -276,7 +278,6 @@
             font-style: italic;
         }
 
-        /* ===== КАРУСЕЛЬ (ПЛАВНЫЙ АВТОПЛЕЙ, БЕЗ СТРЕЛОК) ===== */
         .carousel-container {
             position: relative;
             max-width: 700px;
@@ -574,7 +575,6 @@
             А всё остальное приложится.
         </div>
 
-        <!-- ===== КАРУСЕЛЬ (ПЛАВНЫЙ АВТОПЛЕЙ, БЕЗ СТРЕЛОК) ===== -->
         <div class="carousel-container">
             <div class="carousel-slide" id="carouselSlide">
                 <img src="1.jpg" alt="Маша 1" />
@@ -696,7 +696,7 @@
                 riddleHint.textContent = '❌ Не угадала... Попробуй ещё раз!';
                 riddleHint.className = 'hint error';
                 riddleInput.value = '';
-                riddleInput.focus();
+                // НЕ ФОКУСИРУЕМСЯ НА ПОЛЕ — убираем клавиатуру
             }
         }
 
@@ -706,10 +706,14 @@
             if (e.key === 'Enter') tryUnlock();
         });
 
+        // ===== ПОДСКАЗКА — БЕЗ ОТКРЫТИЯ КЛАВИАТУРЫ =====
         hintBtn.addEventListener('click', function() {
             riddleHint.textContent = '💡 Подсказка: её имя начинается на букву "М"';
             riddleHint.className = 'hint';
-            riddleInput.focus();
+            // Убираем фокус с поля ввода, чтобы клавиатура не открывалась
+            if (document.activeElement === riddleInput) {
+                riddleInput.blur();
+            }
         });
 
         // ===== КАРУСЕЛЬ (ПЛАВНЫЙ АВТОПЛЕЙ) =====
@@ -746,7 +750,6 @@
             goTo(current + 1);
         }
 
-        // ТОЧКИ
         const dotsContainer = document.getElementById('carouselDots');
         for (let i = 0; i < total; i++) {
             const dot = document.createElement('span');
@@ -759,7 +762,6 @@
         }
         updateCarousel(0);
 
-        // АВТОПЛЕЙ (каждые 5 секунд, плавно)
         function startAutoplay() {
             autoplayInterval = setInterval(nextSlide, 5000);
         }
