@@ -333,7 +333,7 @@
             font-style: italic;
         }
 
-        /* ===== КАРУСЕЛЬ ===== */
+        /* ===== КАРУСЕЛЬ — ФОТО БОЛЬШЕ И БЕЗ ОБРЕЗАНИЯ ===== */
         .carousel-container {
             position: relative;
             max-width: 700px;
@@ -356,10 +356,12 @@
         }
         .carousel-slide img {
             width: 100%;
-            height: 600px;
+            height: 550px;
             object-fit: contain;
             background: #faf7f2;
             flex-shrink: 0;
+            will-change: transform;
+            padding: 8px;
         }
 
         .carousel-dots {
@@ -728,19 +730,10 @@
             letter-spacing: 4px;
         }
 
-        /* ===== АДАПТИВ ===== */
         @media (max-width: 600px) {
             .carousel-slide img {
-                height: auto;
-                max-height: 90vh;
-                width: 100%;
-                object-fit: contain;
-                background: #faf7f2;
-            }
-            .carousel-container {
-                max-width: 100%;
-                border-radius: 16px;
-                margin: 20px auto;
+                height: 380px;
+                padding: 4px;
             }
             .main-site { padding: 20px 12px; }
             .praise { font-size: 18px; min-height: 60px; padding: 12px 0 4px; }
@@ -817,6 +810,7 @@
             А всё остальное приложится.
         </div>
 
+        <!-- ===== КАРУСЕЛЬ С УВЕЛИЧЕННЫМИ ФОТО ===== -->
         <div class="carousel-container section-hidden" id="carouselSection">
             <div class="carousel-slide" id="carouselSlide">
                 <img src="1.jpg" alt="Маша 1" />
