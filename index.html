@@ -20,7 +20,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@200;300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet" />
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -31,6 +31,8 @@
             color: #3d2e2a;
             min-height: 100vh;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .hearts-container {
@@ -116,6 +118,7 @@
             position: relative;
             z-index: 1;
             animation: fadeInDown 0.8s ease forwards;
+            text-shadow: 0 0 40px rgba(176, 124, 106, 0.1);
         }
         .start-screen .sub {
             font-family: 'Inter', sans-serif;
@@ -272,6 +275,7 @@
             transform: translateY(0);
         }
 
+        /* ===== ШАПКА ===== */
         .hero {
             text-align: center;
             padding: 30px 0 10px;
@@ -279,58 +283,62 @@
             z-index: 1;
         }
         .hero .big {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(44px, 12vw, 80px);
-            font-weight: 700;
-            font-style: italic;
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(48px, 14vw, 90px);
+            font-weight: 400;
             background: linear-gradient(135deg, #b07c6a, #d4b8ab, #b07c6a);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: glow 2.5s ease-in-out infinite alternate;
+            animation: glow 3s ease-in-out infinite alternate;
             line-height: 1.2;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 80px rgba(176, 124, 106, 0.15);
         }
         @keyframes glow {
             0% { filter: drop-shadow(0 0 20px rgba(176, 124, 106, 0.15)); }
-            100% { filter: drop-shadow(0 0 50px rgba(176, 124, 106, 0.35)); }
+            100% { filter: drop-shadow(0 0 60px rgba(176, 124, 106, 0.35)); }
         }
         .hero .big-sub {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(18px, 3vw, 26px);
+            font-size: clamp(20px, 3vw, 28px);
             font-weight: 400;
             font-style: italic;
             color: #9a847a;
             margin-top: 8px;
             letter-spacing: 2px;
+            opacity: 0.8;
         }
 
+        /* ===== ФИЛОСОФИЯ ===== */
         .philosophy {
             text-align: center;
             max-width: 700px;
             margin: 20px auto 35px;
             padding: 32px 28px;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(16px);
             border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 8px 40px rgba(176, 124, 106, 0.08);
-            line-height: 2;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 40px rgba(176, 124, 106, 0.06);
+            line-height: 2.2;
             font-size: 18px;
             color: #3d2e2a;
             font-weight: 300;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             will-change: transform;
+            letter-spacing: 0.5px;
         }
         .philosophy:hover {
             transform: scale(1.01) translateY(-2px);
             box-shadow: 0 12px 50px rgba(176, 124, 106, 0.12);
         }
         .philosophy .highlight-ph {
+            font-family: 'Great Vibes', cursive;
+            font-weight: 400;
+            font-size: 24px;
             color: #b07c6a;
-            font-weight: 500;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
+            letter-spacing: 1px;
         }
 
         /* ===== КАРУСЕЛЬ ===== */
@@ -341,8 +349,8 @@
             border-radius: 28px;
             overflow: hidden;
             box-shadow: 0 16px 80px rgba(176, 124, 106, 0.15);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(8px);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -355,14 +363,15 @@
             transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .carousel-slide img {
-            width: 100%;
+            width: calc(100% - 24px);
             height: 550px;
             object-fit: contain;
             background: #faf7f2;
             flex-shrink: 0;
             will-change: transform;
-            padding: 8px;
+            margin: 0 12px;
             border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(176, 124, 106, 0.06);
         }
 
         .carousel-dots {
@@ -375,7 +384,7 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: rgba(176, 124, 106, 0.25);
+            background: rgba(176, 124, 106, 0.2);
             cursor: pointer;
             transition: all 0.3s ease;
             border: 1px solid rgba(176, 124, 106, 0.1);
@@ -388,6 +397,7 @@
             background: #b07c6a;
             transform: scale(1.4);
             border-color: #b07c6a;
+            box-shadow: 0 0 12px rgba(176, 124, 106, 0.3);
         }
 
         .praise {
@@ -405,22 +415,26 @@
             flex-wrap: wrap;
             gap: 6px;
             transition: opacity 0.4s ease;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
         }
         .praise .highlight {
+            font-family: 'Great Vibes', cursive;
+            font-weight: 400;
+            font-size: 28px;
             color: #b07c6a;
-            font-weight: 600;
-            font-style: normal;
         }
 
+        /* ===== ТОРТ ===== */
         .cake-section {
             text-align: center;
             margin: 40px 0 20px;
             padding: 30px 20px;
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(16px);
             border-radius: 28px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 8px 40px rgba(176, 124, 106, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 40px rgba(176, 124, 106, 0.04);
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -430,12 +444,12 @@
             box-shadow: 0 12px 60px rgba(176, 124, 106, 0.1);
         }
         .cake-section .cake-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 22px;
-            font-weight: 600;
-            font-style: italic;
+            font-family: 'Great Vibes', cursive;
+            font-size: 26px;
+            font-weight: 400;
             color: #3d2e2a;
             margin-bottom: 16px;
+            letter-spacing: 1px;
         }
 
         .cake {
@@ -506,14 +520,15 @@
         }
 
         .cake-message {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            font-weight: 600;
+            font-family: 'Great Vibes', cursive;
+            font-size: 28px;
+            font-weight: 400;
             color: #b07c6a;
             margin-top: 16px;
             opacity: 0;
             transition: opacity 0.6s ease;
             min-height: 50px;
+            letter-spacing: 1px;
         }
         .cake-message.show {
             opacity: 1;
@@ -553,6 +568,7 @@
             }
         }
 
+        /* ===== СЕКРЕТ ===== */
         .secret-section {
             text-align: center;
             margin: 35px 0;
@@ -581,17 +597,17 @@
         }
         .secret-message {
             display: none;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(16px);
             border-radius: 24px;
             padding: 36px 28px;
             margin-top: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             animation: fadeUp 0.6s ease;
             max-width: 620px;
             margin-left: auto;
             margin-right: auto;
-            box-shadow: 0 8px 40px rgba(176, 124, 106, 0.06);
+            box-shadow: 0 8px 40px rgba(176, 124, 106, 0.04);
         }
         .secret-message.show { display: block; }
         @keyframes fadeUp {
@@ -608,9 +624,10 @@
             padding: 0 4px;
         }
         .secret-message p .highlight-secret {
+            font-family: 'Great Vibes', cursive;
+            font-weight: 400;
+            font-size: 26px;
             color: #b07c6a;
-            font-weight: 600;
-            font-style: italic;
             position: relative;
         }
         .secret-message p .highlight-secret::after {
@@ -625,6 +642,7 @@
             border-radius: 4px;
         }
 
+        /* ===== 10 ПРИЧИН ===== */
         .reasons-section {
             padding: 40px 0 20px;
         }
@@ -640,12 +658,12 @@
             display: flex;
             align-items: center;
             gap: 18px;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(16px);
             padding: 20px 24px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 4px 30px rgba(176, 124, 106, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(176, 124, 106, 0.02);
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, background 0.4s ease;
             opacity: 0;
             animation: fadeSlideUp 0.6s ease forwards;
@@ -670,8 +688,8 @@
         }
         .reason-card:hover {
             transform: translateY(-6px) scale(1.015);
-            box-shadow: 0 16px 60px rgba(176, 124, 106, 0.12);
-            background: rgba(255, 255, 255, 0.75);
+            box-shadow: 0 16px 60px rgba(176, 124, 106, 0.1);
+            background: rgba(255, 255, 255, 0.7);
             border-color: rgba(176, 124, 106, 0.15);
         }
         .reason-icon {
@@ -682,26 +700,27 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(176, 124, 106, 0.08);
+            background: rgba(176, 124, 106, 0.06);
             border-radius: 50%;
             transition: transform 0.3s ease, background 0.3s ease;
         }
         .reason-card:hover .reason-icon {
             transform: scale(1.1) rotate(-4deg);
-            background: rgba(176, 124, 106, 0.15);
+            background: rgba(176, 124, 106, 0.12);
         }
         .reason-text {
+            font-family: 'Inter', sans-serif;
             font-size: 15px;
             color: #3d2e2a;
             font-weight: 300;
-            line-height: 1.5;
+            line-height: 1.6;
             letter-spacing: 0.3px;
         }
         .reason-text .highlight-word {
-            font-weight: 600;
+            font-family: 'Great Vibes', cursive;
+            font-weight: 400;
+            font-size: 20px;
             color: #b07c6a;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
             position: relative;
         }
         .reason-text .highlight-word::after {
@@ -712,7 +731,7 @@
             width: 100%;
             height: 2px;
             background: linear-gradient(90deg, #b07c6a, #d4b8ab);
-            opacity: 0.3;
+            opacity: 0.2;
             border-radius: 4px;
         }
 
@@ -731,15 +750,17 @@
             letter-spacing: 4px;
         }
 
+        /* ===== АДАПТИВ ===== */
         @media (max-width: 600px) {
             .carousel-slide img {
+                width: calc(100% - 16px);
                 height: 380px;
-                padding: 6px;
+                margin: 0 8px;
                 border-radius: 18px;
             }
             .main-site { padding: 20px 12px; }
             .praise { font-size: 18px; min-height: 60px; padding: 12px 0 4px; }
-            .hero .big { font-size: 36px; }
+            .hero .big { font-size: 42px; }
             .hero .big-sub { font-size: 16px; }
             .secret-btn { padding: 14px 28px; font-size: 15px; }
             .start-screen h1 { font-size: 32px; }
@@ -748,12 +769,13 @@
             .secret-message p { font-size: 17px; line-height: 2; }
             .secret-message { padding: 28px 18px; }
             .philosophy { font-size: 16px; padding: 24px 18px; }
+            .philosophy .highlight-ph { font-size: 20px; }
             .main-site::before { background-attachment: scroll; }
             .cake { font-size: 50px; }
             .cake .cake-body { font-size: 50px; }
             .cake .flames { font-size: 22px; }
-            .cake-section .cake-title { font-size: 18px; }
-            .cake-message { font-size: 20px; }
+            .cake-section .cake-title { font-size: 22px; }
+            .cake-message { font-size: 22px; }
             .start-screen { background-attachment: scroll; }
             .reasons-grid {
                 grid-template-columns: 1fr;
@@ -773,6 +795,7 @@
                 font-size: 14px;
                 line-height: 1.4;
             }
+            .reason-text .highlight-word { font-size: 18px; }
             .heart {
                 font-size: 14px;
             }
@@ -831,7 +854,7 @@
         </div>
 
         <section class="cake-section section-hidden" id="cakeSection">
-            <div class="cake-title">🎂 Задуй свечи и загадай желание!</div>
+            <div class="cake-title">Задуй свечи и загадай желание!</div>
 
             <div class="cake" id="cake">
                 <div class="flames" id="flames">
@@ -845,7 +868,7 @@
             </div>
 
             <button class="cake-btn" id="cakeBtn">💨 Задуй свечи!</button>
-            <div class="cake-message" id="cakeMessage">🎉 Ура! С днём рождения! 🎉</div>
+            <div class="cake-message" id="cakeMessage">Ура! С днём рождения! 🎉</div>
         </section>
 
         <section class="secret-section section-hidden" id="secretSection">
